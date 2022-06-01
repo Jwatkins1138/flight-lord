@@ -1,0 +1,7 @@
+<% @flights.each do |f| %>
+  <p>origin <%= f.origin.symbol %></p>
+  <p>destination <%= f.destination.symbol %></p>
+  <p>flight number <%= f.number %></p>
+  <p>date <%= f.date %></p>
+  <p>departure time <%= f.time %></p>
+<% end %>
