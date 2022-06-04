@@ -1,7 +1,41 @@
-<% @flights.each do |f| %>
-  <p>origin <%= f.origin.symbol %></p>
-  <p>destination <%= f.destination.symbol %></p>
-  <p>flight number <%= f.number %></p>
-  <p>date <%= f.date %></p>
-  <p>departure time <%= f.time %></p>
-<% end %>
+<nav class='navbar is-light px-5'>
+  <div class='navbar-brand'>
+    <%= form_with url: root_path, method: :get do |f| %>
+      show me flights from   
+      <%= f.select name='search[origin_id]', [['LAX', 1], ['JFK', 2], ['SFO', 3]] %>
+      to
+      <%= f.select name='search[destination_id]', [['LAX', 1], ['JFK', 2], ['SFO', 3]] %>
+      on 
+      <%= f.collection_select name='search[departure]', Flight.order(:departure), :departure, :departure %>
+      <%= f.submit 'search' %>
+    <% end %>
+  </div>
+</nav>
+<div class='table-container px-5 pt-5'>
+  <table class='table is-fullwidth'>
+    <thead>
+      <tr class='is-selected'>
+        <td><b>origin</b></td>
+        <td><b>destination</b></td>
+        <td><b>flight number</b></td>
+        <td><b>departure</b></td>
+        <td><b>select</b></td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @flights.each do |f| %>
+      <tr>
+        <td> <%= f.origin.symbol %></td>
+        <td> <%= f.destination.symbol %></td>
+        <td> <%= f.number %></td>
+        <td> <%= f.departure %></td>
+        <td><label class="checkbox">
+            <input type="checkbox">
+              
+            </label></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>  
+     
