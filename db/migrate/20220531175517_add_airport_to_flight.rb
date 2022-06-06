@@ -7,4 +7,9 @@ class AddAirportToFlight < ActiveRecord::Migration[7.0]
     # , index: true
     # add_foreign_key :flights, :airports, column: :destination_id
   end
+  def change
+    add_column :airports, :name, :string
+    add_column :airports, :symbol, :string
+  end
+  
 end
