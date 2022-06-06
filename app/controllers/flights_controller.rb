@@ -1,23 +1,19 @@
 class FlightsController < ApplicationController
-  attr_accessor :origin_id
+  attr_accessor :origin_id, :destination_id, :departure
   
   def index
-    # @flights = Flight.all
     @search = params['search']
-    # @search = flight_params
     if @search.present?
       @origin_id = @search['origin_id']
       @destination_id = @search['destination_id']
-      @departure = @search['departure']
-      @flights = Flight.where('origin_id = ? AND destination_id = ? AND departure > ?', @origin_id, @destination_id, @departure)
+      @departure = Date.strptime(@search['departure'], '%Y/%m/%d').to_s
+      @departure_range = Date.strptime(@search['departure'], '%Y/%m/%d').next_day(1).to_s
+      @flights = Flight.where('origin_id = ? AND destination_id = ? AND departure >= ? AND departure < ?', @origin_id, @destination_id, @departure, @departure_range )
     else 
       @flights = Flight.all  
     end  
   end
 
   private
-
-  def flight_params
-  end
 
 end

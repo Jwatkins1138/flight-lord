@@ -11,7 +11,10 @@ class Flight < ApplicationRecord
   end
 
   def date_only
-    self.departure.strftime('%m/%d/%Y')
+    self.departure.strftime('%Y/%m/%d')
   end
-  
+
+  def search()
+  end
+
 end

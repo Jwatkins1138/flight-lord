@@ -6,7 +6,7 @@
       to
       <%= f.select name='search[destination_id]', [['LAX', 1], ['JFK', 2], ['SFO', 3]] %>
       on 
-      <%= f.collection_select name='search[departure]', Flight.order(:departure), :departure, :departure %>
+      <%= f.collection_select name='search[departure]', Flight.all.uniq { |f| f.date_only }, :date_only, :date_only %>
       <%= f.submit 'search' %>
     <% end %>
   </div>
@@ -29,10 +29,7 @@
         <td> <%= f.destination.symbol %></td>
         <td> <%= f.number %></td>
         <td> <%= f.departure %></td>
-        <td><label class="checkbox">
-            <input type="checkbox">
-              
-            </label></td>
+        <td> <%= link_to 'book', flight_path(f), method: :get, class: 'button is-info' %>
       </tr>
       <% end %>
     </tbody>
