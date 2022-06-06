@@ -1,0 +1,23 @@
+<div class='columns px-5 pt-5'>
+  <div class='column'>  
+    <div class='card px-5 pt-5'>
+      <header class='card-header'><p class='title'>flight information </header>
+      <div class='card-content'>
+        <div class='content'><p>flight number: <%= @booking.flight.number %></p></div>
+        <div class='content'><p>departs from: <%= @booking.flight.origin.name %></p></div>
+        <div class='content'><p>on: <%= @booking.flight.departure %></p></div>
+        <div class='content'><p>arrives at: <%= @booking.flight.destination.name %></p></div>
+        <div class='content'><p>passengers: <%= @booking.flight.passengers.count %></p></div>
+      </div>
+    </div>
+  </div>  
+  <div class='column'>  
+    <div class='card px-5 pt-5'>
+      <header class='card-header'><p class='title'>passenger information </header>
+      <div class='card-content'>
+        <div class='content'><p>name: <%= @booking.passenger.name %></p></div>
+        <div class='content'><p>email: <%= @booking.passenger.email %></p></div>
+      </div>
+    </div>
+  </div>
+</div>  

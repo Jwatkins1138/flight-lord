@@ -1,0 +1,28 @@
+<div class='columns px-5 pt-5'>
+  <div class='column'>  
+    <div class='card px-5 pt-5'>
+      <header class='card-header'><p class='title'>flight number: <%= @flight.number %></p></header>
+        <div class='card-content'>
+          <div class='content'><p>departs from: <%= @flight.origin.name %></p></div>
+          <div class='content'><p>on: <%= @flight.departure %></p></div>
+          <div class='content'><p>arrives at: <%= @flight.destination.name %></p></div>
+          <div class='content'><p>passengers: <%= @flight.passengers.count %></p></div>
+        </div>
+    </div>
+  </div>
+  <div class='column'>  
+    <div class='card px-5 pt-5'>
+      <header class='card-header'><p class='title'>passenger information</p></header>
+      <div class='card-content'>
+      <%= simple_form_for @booking do |f| %>
+        <%= f.hidden_field :flight_id, value: @flight.id %>
+        <%= simple_fields_for :passenger do |p| %>
+          <%= p.input  :name %>
+          <%= p.input :email %>
+          <% end %>
+        <%= f.button :submit, 'book flight', class: 'button is-info' %>
+        <% end %>
+      </div>  
+    </div> 
+  </div>  
+</div>   

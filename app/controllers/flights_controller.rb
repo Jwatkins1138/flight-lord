@@ -14,6 +14,14 @@ class FlightsController < ApplicationController
     end  
   end
 
+  def show
+    @flight = Flight.find(params[:id])
+    # @booking = @flight.bookings.build
+    # @passenger = @flight.passengers.build
+    @booking = Booking.new
+    @passenger = Passenger.new
+  end
+
   private
 
 end
